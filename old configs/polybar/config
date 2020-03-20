@@ -1,0 +1,280 @@
+[colors]
+;My colors are set from .Xresources to match everything else
+my_background 	= ${xrdb:background}
+my_foreground 	= ${xrdb:foreground}
+my_color0	= ${xrdb:color0}
+my_color1	= ${xrdb:color1}
+my_color2	= ${xrdb:color2}
+my_color3	= ${xrdb:color3}
+my_color4	= ${xrdb:color4}
+my_color5	= ${xrdb:color5}
+my_color6	= ${xrdb:color6}
+my_color7	= ${xrdb:color7}
+my_color8	= ${xrdb:color8}
+my_color9	= ${xrdb:color9}
+my_color10	= ${xrdb:color10}
+my_color11	= ${xrdb:color11}
+my_color12	= ${xrdb:color12}
+my_color13	= ${xrdb:color13}
+my_color14	= ${xrdb:color14}
+my_color15	= ${xrdb:color15}
+
+[bar/i3wmthemer_bar]
+width = 100%
+height = 27
+radius = 0
+fixed-center = true 
+
+background = #162025
+foreground = #bfbfbf
+
+line-size = 3
+line-color =
+
+border-size = 0
+border-color =
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = "Source Code Pro Semibold:size=10;1"
+font-1 = "Font Awesome 5 Free:style=Solid:size=10;1"
+font-2 = "Font Awesome 5 Brands:size=10;1"
+
+modules-left = i3
+modules-center = date
+modules-right = wlan eth pulseaudio battery powermenu
+
+tray-position =
+;tray-padding =
+;wm-restack = i3
+;override-redirect = true
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-padding = 2
+label-mode-foreground = #162025
+label-mode-background = #75404b
+
+label-focused = %index%
+label-focused-background = #75404b
+label-focused-foreground = #6b7443
+label-focused-padding = 2
+
+label-unfocused = %index%
+label-unfocused-background = #75404b
+label-unfocused-foreground = #162025
+label-unfocused-padding = 2
+
+label-visible = %index%
+label-visible-background = #75404b
+label-visible-foreground = #162025
+label-visible-padding = 2
+
+label-urgent = %index%
+label-urgent-background = #BA2922
+label-urgent-padding = 2
+
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-foreground = #162025
+format-connected-background = #39402e
+format-connected-padding = 2
+label-connected = %essid%
+
+format-disconnected =
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = #162025
+
+[module/eth]
+type = internal/network
+interface = enp0s3
+interval = 3.0
+
+format-connected-padding = 2
+format-connected-foreground = #162025
+format-connected-background = #39402e
+format-connected-prefix = " "
+format-connected-prefix-foreground = #162025
+label-connected = %local_ip%
+
+format-disconnected =
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-foreground = #162025
+format-background = #4c584a
+format-padding = 2
+
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = AC
+full-at = 99
+
+format-full-background = ${colors.my_background}
+format-charging-background = ${colors.my_background}
+format-charging = "⁣  <label-charging> <animation-charging> "
+format-charging-underline = #39402e
+
+format-discharging-background = ${colors.my_background}
+format-discharging = "⁣ <label-discharging> <ramp-capacity> "
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix-foreground = ${colors.my_background}
+format-full-underline = ${self.format-charging-underline}
+
+format-charing-background = ${colors.my_background}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.my_foreground}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.my_foreground}
+animation-charging-framerate = 750
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = #39402e
+label-close =  cancel
+label-close-foreground = #39402e
+label-separator = |
+label-separator-foreground = #39402e
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+menu-0-2 = log off
+menu-0-2-exec = menu-open-3
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = power off
+menu-2-0-exec = poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+menu-3-0 = log off
+menu-3-0-exec = pkill -KILL -u $USER
+menu-3-1 = cancel
+menu-3-1-exec = menu-open-0
+
+enable-ipc = true
+
+[module/polypomo]
+type = custom/script
+
+exec = ~/Scripts/polypomo
+tail = true
+
+label = %output%
+click-left = ~/Scripts/polypomo toggle
+click-right = ~/Scripts/polypomo end
+click-middle = ~/Scripts/polypomo lock
+scroll-up = ~/Scripts/polypomo time +60
+scroll-down = ~/Scripts/polypomo time -60
+
+[module/backlight]
+type = internal/xbacklight
+
+; XRandR output to get get values from
+; Default: the monitor defined for the running bar
+; output = eDP1
+
+; Create scroll handlers used to set the backlight value
+; Default: true
+enable-scroll = false
+; Available tags:
+;   <label> (default)
+;   <ramp>
+;   <bar>
+format = <bar>
+
+; Available tokens:
+;   %percentage% (default)
+label = %percentage%%
+
+; Only applies if <ramp> is used
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+; Only applies if <bar> is used
+bar-width = 5 
+bar-indicator = |
+bar-fill = ─
+bar-empty = ─
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+

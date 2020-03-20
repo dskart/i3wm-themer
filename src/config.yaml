@@ -1,0 +1,5 @@
+i3-config: /home/raphaelvh/.config/i3/config
+polybar-config: /home/raphaelvh/.config/polybar/config
+xresources: /home/raphaelvh/.Xresources
+nitrogen-config: /home/raphaelvh/.config/nitrogen/bg-saved.cfg
+wallpaper-path: /home/raphaelvh/.config/nitrogen/wallpapers/
